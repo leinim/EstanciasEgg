@@ -1,0 +1,48 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="" alt="Estancias Egg" width="30" height="24">
+        </a>
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:if="${session.usuariosession == null}" href="/cliente/registro">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:if="${session.usuariosession != null}" href="/casa">Casas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:if="${session.usuariosession == null}" href="/familia/registro">Familias</a>
+                </li>                
+                <li class="nav-item dropdown">
+                    <a th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuario
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:if="${session.usuariosession == null}" href="/login">Login</a></li>                        
+                        <li><a class="dropdown-item" th:if="${session.usuariosession != null}"href="#">Perfil</a></li>
+                        
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a sec:authorize="hasRole('ADMIN')" th:if="${session.usuariosession != null}" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                        Acciones
+                    </a>
+                    <ul class="dropdown-menu">                
+                        <li>Acción 1</li>
+                        <li>Acción 2</li>
+                        <li>Acción 3</li>
+                    </ul>
+                </li>
+                <li><a th:if="${session.usuariosession != null}" class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+            </ul>           
+        </div>
+    </div>
+</nav>

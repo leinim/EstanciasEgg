@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head th:replace="/fragments/head :: head" ></head>
+    <body>
+        <nav th:replace="/fragments/navbar :: nav"></nav>
+
+        <form action="/cliente/registrado" method="POST" enctype="">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Alias</label>
+                <input type="text" class="form-control" name="alias">
+            </div>        
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Calle</label>
+                <input type="text" class="form-control" name="calle">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Numero</label>
+                <input type="number" class="form-control" name="numero">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Codigo postal</label>
+                <input type="text" class="form-control" name="codPostal">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" name="ciudad">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">País</label>
+                <input type="text" class="form-control" name="pais">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Calle</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="clave">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Repetir Contraseña</label>
+                <input type="password" class="form-control" name="clave2">
+            </div>
+        </form>
+
+        <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert">    
+        </div>
+        <div th:if="${exito != null}" th:text="${exito}" class="alert alert-success" role="alert">            
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    </body>
+</html>
