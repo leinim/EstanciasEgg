@@ -2,8 +2,6 @@ package com.egg.estancias.controladores;
 
 import com.egg.estancias.errores.MiException;
 import com.egg.estancias.servicios.ClienteServicio;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/cliente")
-@PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
 public class ClienteControlador {
     
     @Autowired
@@ -38,7 +35,7 @@ public class ClienteControlador {
             return "crear_cliente.html";
         }
         
-        return "redirect:/inicio";
+        return "redirect:/login";
     }
-    
+    //@PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
 }

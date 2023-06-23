@@ -9,7 +9,6 @@ package com.egg.estancias.entidades;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,8 +28,6 @@ public class Familia extends Usuario {
     private String nombre;
     private int edadMin;
     private int edadMax;
-    private int numHijos;
-    @OneToOne
-    private Casa casa;    
+    private int numHijos;      
     
 }

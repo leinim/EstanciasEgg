@@ -9,6 +9,8 @@ package com.egg.estancias.entidades;
 import com.egg.estancias.enumeraciones.Rol;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -36,6 +38,7 @@ public class Usuario {
     protected Date fechaAlta;
     @Temporal(TemporalType.DATE)
     protected Date fechaBaja;
+    @Enumerated(EnumType.STRING)
     protected Rol rol;
     
 }

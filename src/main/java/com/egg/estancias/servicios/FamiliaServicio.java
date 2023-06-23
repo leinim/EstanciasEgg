@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -34,7 +35,7 @@ public class FamiliaServicio implements UserDetailsService {
         Familia familia = new Familia();
 
         familia.setAlias(alias);
-        familia.setClave(clave);
+        familia.setClave(new BCryptPasswordEncoder().encode(clave));
         familia.setNombre(nombre);
         familia.setEmail(email);
         familia.setEdadMin(edadMin);
@@ -62,8 +63,9 @@ public class FamiliaServicio implements UserDetailsService {
             familia.setEmail(email);
             familia.setEdadMin(edadMin);
             familia.setEdadMax(edadMax);
-            familia.setNumHijos(numHijos);           
-
+            familia.setNumHijos(numHijos);            
+           
+            
             familiaRepositorio.save(familia);
         } else {
             throw new MiException("La familia solicitada no se encuentra registrada.");
@@ -97,7 +99,7 @@ public class FamiliaServicio implements UserDetailsService {
             throw new MiException("La clave no puede ser nula o estar vacia.");
         }
 
-        if (clave.length() < 8) {
+        if (clave.length() < 6) {
             throw new MiException("La clave debe contener un mínimo de 8 dígitos");
         }
 
@@ -132,6 +134,7 @@ public class FamiliaServicio implements UserDetailsService {
             HttpSession session = attr.getRequest().getSession(true);
             
             session.setAttribute("usuariosession", familia);
+            
             
             return new User(familia.getEmail(), familia.getClave(), permisos);
         } else{

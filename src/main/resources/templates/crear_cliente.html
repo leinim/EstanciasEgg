@@ -3,7 +3,8 @@
     <head th:replace="/fragments/head :: head" ></head>
     <body>
         <nav th:replace="/fragments/navbar :: nav"></nav>
-
+        <p> Ya tenes cuenta?</p>
+        <a href="/login">Login</a>
         <form action="/cliente/registrado" method="POST" enctype="">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Nombre</label>
@@ -34,7 +35,7 @@
                 <input type="text" class="form-control" name="pais">
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Calle</label>
+                <label for="exampleFormControlTextarea1" class="form-label">email</label>
                 <input type="email" class="form-control" name="email">
             </div>
             <div class="mb-3">
@@ -45,6 +46,7 @@
                 <label for="exampleFormControlTextarea1" class="form-label">Repetir Contraseña</label>
                 <input type="password" class="form-control" name="clave2">
             </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button> 
         </form>
 
         <div th:if="${error != null}" th:text="${error}" class="alert alert-danger" role="alert">    

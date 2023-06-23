@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -34,7 +35,7 @@ public class ClienteServicio implements UserDetailsService {
         Cliente cliente = new Cliente();
         
         cliente.setAlias(alias);
-        cliente.setClave(clave);
+        cliente.setClave(new BCryptPasswordEncoder().encode(clave));
         cliente.setEmail(email);
         cliente.setNombre(nombre);
         cliente.setCalle(calle);
@@ -103,8 +104,8 @@ public class ClienteServicio implements UserDetailsService {
             throw new MiException("La clave no puede ser nula o estar vacia.");
         }
         
-        if (clave.length() < 8){
-            throw new MiException("El alias debe contener un mínimo de 8 dígitos");
+        if (clave.length() < 6){
+            throw new MiException("La clave debe contener un mínimo de 6 dígitos");
         }
         
         if (email == null || email.isEmpty()){

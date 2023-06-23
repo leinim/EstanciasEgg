@@ -6,11 +6,11 @@ repositorio que persiste a esta entidad (CasaRepositorio) debe contener los mét
 para guardar/actualizar los datos de una vivienda, realizar consultas y eliminar.*/
 package com.egg.estancias.entidades;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
-public class Casa implements Serializable {
+public class Casa {
    
     @Id
     @GeneratedValue(generator = "uuid")
@@ -41,5 +41,9 @@ public class Casa implements Serializable {
     private Integer maxDias;
     private Double precio;
     private String tipoVivienda;
+    @OneToOne
+    private Imagen imagen;
+    @OneToOne
+    private Familia familia;
     
 }

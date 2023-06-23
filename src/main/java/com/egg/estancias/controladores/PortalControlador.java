@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/")
-@PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_FAMILY', 'ROLE_ADMIN')")
 public class PortalControlador {
     
     @GetMapping("/")
     public String index(){
         return "index.html";
     }    
-    
+        
     @GetMapping("/inicio")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_FAMILY', 'ROLE_ADMIN')")
     public String inicio(HttpSession session){
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
         
@@ -32,6 +32,7 @@ public class PortalControlador {
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap modelo){
+        
         if (error != null){
             modelo.put("error", "Usuario o contraseña inválidos.");
         }

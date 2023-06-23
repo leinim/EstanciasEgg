@@ -7,11 +7,11 @@
         <form action="/reserva/reservado" method="POST" enctype="">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Casa</label>
-                <select type="email" class="form-control" name="casa">
+                <select type="" class="form-control" name="casa">
                     <option>Seleccionar Casa</option>
                     <option th:each="casa : ${casas}"
                             th:value="${casa.id}" 
-                            th:text="${casa.calle}" ></option>
+                            th:text="${casa.calle}"></option>
                 </select>
             </div>
             <div class="mb-3">

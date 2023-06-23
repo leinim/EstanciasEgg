@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CasaRepositorio extends JpaRepository<Casa, String>{
     
-    @Query("SELECT c FROM Casa c ORDER BY n.pais DESC")
+    @Query("SELECT c FROM Casa c ORDER BY c.pais DESC")
     public List<Casa> buscarTodo();
 }

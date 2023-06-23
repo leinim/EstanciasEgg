@@ -2,6 +2,7 @@ package com.egg.estancias;
 
 import com.egg.estancias.servicios.ClienteServicio;
 import com.egg.estancias.servicios.FamiliaServicio;
+import com.egg.estancias.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,13 +21,17 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     public FamiliaServicio familiaServicio;
     @Autowired
     public ClienteServicio clienteServicio;
+    @Autowired
+    public UsuarioServicio usuarioServicio;
     
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(clienteServicio)
                 .passwordEncoder(new BCryptPasswordEncoder());
         auth.userDetailsService(familiaServicio)
-                .passwordEncoder(new BCryptPasswordEncoder());     
+                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(usuarioServicio)
+                .passwordEncoder(new BCryptPasswordEncoder());
     }
     
     @Override

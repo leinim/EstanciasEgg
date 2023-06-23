@@ -17,10 +17,12 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-
+@Service
 public class UsuarioServicio implements UserDetailsService{
 
     @Autowired
@@ -33,7 +35,7 @@ public class UsuarioServicio implements UserDetailsService{
         Usuario usuario = new Cliente();
         
         usuario.setAlias(alias);
-        usuario.setClave(clave);
+        usuario.setClave(new BCryptPasswordEncoder().encode(clave));
         usuario.setEmail(email);        
         
         usuario.setFechaAlta(new Date());
