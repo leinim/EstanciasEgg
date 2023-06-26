@@ -32,7 +32,7 @@ public class UsuarioServicio implements UserDetailsService{
     public void crear(String alias, String clave, String clave2, String email) throws MiException{
         validar(alias, clave, clave2, email);
         
-        Usuario usuario = new Cliente();
+        Usuario usuario = new Usuario();
         
         usuario.setAlias(alias);
         usuario.setClave(new BCryptPasswordEncoder().encode(clave));
