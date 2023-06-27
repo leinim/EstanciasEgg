@@ -1,6 +1,7 @@
 package com.egg.estancias.servicios;
 
 import com.egg.estancias.entidades.Cliente;
+import com.egg.estancias.entidades.Usuario;
 import com.egg.estancias.enumeraciones.Rol;
 import com.egg.estancias.errores.MiException;
 import com.egg.estancias.repositorios.ClienteRepositorio;
@@ -147,7 +148,7 @@ public class ClienteServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-       Cliente cliente = clienteRepositorio.buscarPorEmail(email);
+       Usuario cliente = clienteRepositorio.buscarPorEmail(email);
         
         if (cliente != null){
             

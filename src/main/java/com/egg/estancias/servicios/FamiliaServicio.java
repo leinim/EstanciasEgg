@@ -1,6 +1,7 @@
 package com.egg.estancias.servicios;
 
 import com.egg.estancias.entidades.Familia;
+import com.egg.estancias.entidades.Usuario;
 import com.egg.estancias.enumeraciones.Rol;
 import com.egg.estancias.errores.MiException;
 import com.egg.estancias.repositorios.FamiliaRepositorio;
@@ -120,7 +121,7 @@ public class FamiliaServicio implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Familia familia = familiaRepositorio.buscarPorEmail(email);
+        Usuario familia = familiaRepositorio.buscarPorEmail(email);
         
         if (familia != null){
             

@@ -28,7 +28,7 @@ public class CasaServicio {
     @Autowired
     private ImagenServicio imagenServicio;
     
-    public void crear(MultipartFile archivo, Familia familia, String calle, int numero, String codPostal, String ciudad, String pais, Date fechaDesde, Date fechaHasta, int minDias, int maxDias, double precio, String tipoVivienda) throws MiException{
+    public void crear(MultipartFile archivo, Familia familia, String calle, int numero, String codPostal, String ciudad, String pais, int minDias, int maxDias, double precio, String tipoVivienda) throws MiException{
         
         try {
             Casa casa = new Casa();           
@@ -37,9 +37,7 @@ public class CasaServicio {
             casa.setNumero(numero);
             casa.setCodPostal(codPostal);
             casa.setCiudad(ciudad);
-            casa.setPais(pais);
-            casa.getFechaDesde();
-            casa.setFechaHasta(fechaHasta);
+            casa.setPais(pais);            
             casa.setMinDias(minDias);
             casa.setMaxDias(maxDias);
             casa.setPrecio(precio);
@@ -50,6 +48,7 @@ public class CasaServicio {
             
             casa.setImagen(imagen);
             
+            casaRepositorio.save(casa);
             
         } catch (MiException ex) {
             System.out.println(ex.getMessage());
