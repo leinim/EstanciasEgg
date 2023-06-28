@@ -12,36 +12,33 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:if="${session.usuariosession == null}" href="/cliente/registro">Clientes</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" th:if="${session.usuariosession != null}" sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_FAMILY')" href="/casa/agregar">Agregar casa</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:if="${session.usuariosession == null}" href="/familia/registro">Familias</a>
-                </li>                
-                <li class="nav-item dropdown">
-                    <a th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                <div class="dropdown">
+
+                    <button th:if="${session.usuariosession != null}" th:text="${session.usuariosession.nombre}" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Usuario
-                    </a>
+                    </button>
+                    <button th:if="${session.usuariosession == null}" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuario
+                    </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:if="${session.usuariosession == null}" href="/login">Login</a></li>                        
-                        <li><a class="dropdown-item" th:if="${session.usuariosession != null}"href="#">Perfil</a></li>
-                        
+                        <li><a class="dropdown-item" th:if="${session.usuariosession == null}" th:href="@{/login}">Login</a></li>                        
+                        <li><a class="dropdown-item" th:if="${session.usuariosession != null}" th:href="@{/usuario/perfil}">Perfil</a></li>
+                        <li >
+                            <a class="dropdown-item" th:if="${session.usuariosession == null}" href="/cliente/registro">Registrar Clientes</a>
+                        </li>
+                        <li >
+                            <a class="dropdown-item" th:if="${session.usuariosession == null}" href="/familia/registro">Registrar Familias</a>
+                        </li>                
                     </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a sec:authorize="hasRole('ADMIN')" th:if="${session.usuariosession != null}" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
-                        Acciones
-                    </a>
-                    <ul class="dropdown-menu">                
-                        <li>Acción 1</li>
-                        <li>Acción 2</li>
-                        <li>Acción 3</li>
-                    </ul>
-                </li>
-                <li><a th:if="${session.usuariosession != null}" class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+                </div>
+                <div>
+                    <li><a th:if="${session.usuariosession != null}" class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+                </div>  
             </ul>           
         </div>
     </div>

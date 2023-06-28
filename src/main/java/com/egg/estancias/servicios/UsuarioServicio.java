@@ -1,6 +1,5 @@
 package com.egg.estancias.servicios;
 
-import com.egg.estancias.entidades.Cliente;
 import com.egg.estancias.entidades.Usuario;
 import com.egg.estancias.enumeraciones.Rol;
 import com.egg.estancias.errores.MiException;

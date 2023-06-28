@@ -34,5 +34,5 @@ public class FamiliaControlador {
         }
         return "redirect:/login";
     }
-    //@PreAuthorize("hasAnyRole('ROLE_FAMILY', 'ROLE_ADMIN')")
+    
 }

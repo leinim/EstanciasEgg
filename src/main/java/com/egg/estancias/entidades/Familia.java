@@ -26,8 +26,8 @@ public class Familia extends Usuario {
     private String id;
     
     private String nombre;
-    private int edadMin;
-    private int edadMax;
+    private int minEdad;
+    private int maxEdad;
     private int numHijos;      
     
 }

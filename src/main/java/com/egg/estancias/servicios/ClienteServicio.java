@@ -61,7 +61,7 @@ public class ClienteServicio implements UserDetailsService {
             
             Cliente cliente = respuesta.get();
             cliente.setAlias(alias);
-            cliente.setClave(clave);
+            cliente.setClave(new BCryptPasswordEncoder().encode(clave));
             cliente.setEmail(email);
             cliente.setNombre(nombre);
             cliente.setCalle(calle);

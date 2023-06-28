@@ -81,21 +81,20 @@ public class CasaServicio {
             }
             
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
-            casa.setImagen(imagen);
-            
+            casa.setImagen(imagen);            
             
             casaRepositorio.save(casa);
-        }
-        
-        
-    }
-    
-    
+        }       
+    }  
     
     public List<Casa> listarCasas(){
        List<Casa> casas = casaRepositorio.buscarTodo();
        return casas;
        
     }
+    
+    public Casa getOne(String id){
+        return casaRepositorio.getOne(id);
+    }   
     
 }

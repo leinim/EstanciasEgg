@@ -30,8 +30,8 @@ public class FamiliaServicio implements UserDetailsService {
     private FamiliaRepositorio familiaRepositorio;
     
     @Transactional
-    public void crear(String alias, String clave, String clave2, String nombre, String email, int edadMin, int edadMax, int numHijos) throws MiException {
-        validar(alias, clave, clave2, nombre, email, edadMin, edadMax, numHijos);
+    public void crear(String alias, String clave, String clave2, String nombre, String email, int minEdad, int maxEdad, int numHijos) throws MiException {
+        validar(alias, clave, clave2, nombre, email, minEdad, maxEdad, numHijos);
 
         Familia familia = new Familia();
 
@@ -39,8 +39,8 @@ public class FamiliaServicio implements UserDetailsService {
         familia.setClave(new BCryptPasswordEncoder().encode(clave));
         familia.setNombre(nombre);
         familia.setEmail(email);
-        familia.setEdadMin(edadMin);
-        familia.setEdadMax(edadMax);
+        familia.setMinEdad(minEdad);
+        familia.setMaxEdad(maxEdad);
         familia.setNumHijos(numHijos);
 
         familia.setFechaAlta(new Date());
@@ -51,19 +51,19 @@ public class FamiliaServicio implements UserDetailsService {
     }
     
     @Transactional
-    public void modificar(String id, String alias, String clave, String clave2, String nombre, String email, int edadMin, int edadMax, int numHijos) throws MiException {
-        validar(alias, clave, clave2, nombre, email, edadMin, edadMax, numHijos);
+    public void modificar(String id, String alias, String clave, String clave2, String nombre, String email, int minEdad, int maxEdad, int numHijos) throws MiException {
+        validar(alias, clave, clave2, nombre, email, minEdad, maxEdad, numHijos);
 
         Optional<Familia> respuesta = familiaRepositorio.findById(id);
         if (respuesta.isPresent()) {
-            Familia familia = new Familia();
+            Familia familia = respuesta.get();
 
             familia.setAlias(alias);
-            familia.setClave(clave);
+            familia.setClave(new BCryptPasswordEncoder().encode(clave));
             familia.setNombre(nombre);
             familia.setEmail(email);
-            familia.setEdadMin(edadMin);
-            familia.setEdadMax(edadMax);
+            familia.setMinEdad(minEdad);
+            familia.setMaxEdad(maxEdad);
             familia.setNumHijos(numHijos);            
            
             
@@ -86,7 +86,7 @@ public class FamiliaServicio implements UserDetailsService {
         }
     }
 
-    public void validar(String alias, String clave, String clave2, String nombre, String email, int edadMin, int edadMax, int numHijos) throws MiException {
+    public void validar(String alias, String clave, String clave2, String nombre, String email, int minEdad, int maxEdad, int numHijos) throws MiException {
 
         if (alias == null || alias.isEmpty()) {
             throw new MiException("El alias no puede ser nulo o estar vacio.");
@@ -142,4 +142,8 @@ public class FamiliaServicio implements UserDetailsService {
             return null;
         }
     }
+    
+    public Familia getOne(String id){
+        return familiaRepositorio.getOne(id);
+    }    
 }
